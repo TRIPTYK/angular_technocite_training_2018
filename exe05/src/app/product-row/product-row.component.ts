@@ -1,5 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  HostBinding,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { Product } from '../product.model';
+// import { Output } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-product-row',
@@ -8,7 +16,14 @@ import { Product } from '../product.model';
 })
 export class ProductRowComponent implements OnInit {
   @Input() product: Product;
-  constructor() {}
-
+  @Output() onSelectedProduct: EventEmitter<Product>;
+  @HostBinding('attr.class') cssClass = 'item';
+  constructor() {
+    this.onSelectedProduct = new EventEmitter();
+  }
+  selectItem(product: Product) {
+    // console.log('Product Row', product);
+    this.onSelectedProduct.emit(product);
+  }
   ngOnInit() {}
 }

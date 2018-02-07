@@ -5,7 +5,7 @@ import { Product } from './product.model';
   selector: 'app-inventory-root',
   template: `
   <div class="inventory-app">
-    <app-products-list [productList]="products"></app-products-list>
+    <app-products-list [productList]="products" (onSelectProduct)="deleteProduct($event)"></app-products-list>
   </div>
   `,
   styleUrls: ['./app.component.scss']
@@ -18,7 +18,7 @@ export class AppComponent {
       new Product(
         'MYSHOES',
         'Black running shoes',
-        '/assets/images/products/black-shoe.jpg',
+        '/assets/images/products/black-shoes.jpg',
         ['men', 'Shoes', 'Running'],
         109.99
       ),
@@ -37,5 +37,8 @@ export class AppComponent {
         38.99
       )
     ];
+  }
+  deleteProduct(product: Product) {
+    console.log('application', product);
   }
 }
