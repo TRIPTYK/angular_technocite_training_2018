@@ -1,18 +1,9 @@
-import { Component } from '@angular/core';
 import { Product } from './product.model';
+import { Injectable } from '@angular/core';
 
-@Component({
-  selector: 'app-inventory-root',
-  template: `
-  <div class="inventory-app">
-    <app-products-list [productList]="products" (onSelectProduct)="deleteProduct($event)"></app-products-list>
-  </div>
-  `,
-  styleUrls: ['./app.component.scss']
-})
-export class AppComponent {
-  products: Product[];
-  title = 'app';
+@Injectable()
+export class ProductService {
+  private products: Product[];
   constructor() {
     this.products = [
       new Product(
@@ -37,6 +28,9 @@ export class AppComponent {
         38.99
       )
     ];
+  }
+  getProducts(): Product[] {
+    return this.products;
   }
   deleteProduct(product: Product) {
     this.products = this.products.filter(item => item !== product);

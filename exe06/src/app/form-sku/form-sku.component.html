@@ -1,0 +1,16 @@
+<div class="ui raised segment">
+  <h2 class="ui header">
+    Demo Form SKU
+  </h2>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f.value)" class="ui form">
+    <div class="field">
+      <label for="skuInput">SKU</label>
+      <input type="text" id="skuInput" placeHolder="SKU" name="sku" ngModel>
+    </div>
+    <div class="field">
+      <label for="nameInput">NAME</label>
+      <input type="text" id="nameInput" placeHolder="Name" name="name" ngModel>
+    </div>
+    <button type="submit" class="ui button">SUBMIT</button>
+  </form>
+</div>

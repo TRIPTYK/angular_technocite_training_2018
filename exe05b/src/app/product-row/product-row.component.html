@@ -1,0 +1,9 @@
+<app-product-image [product]="product"></app-product-image>
+<a href="#" (click)='selectItem(product)'>
+  <i class="far fa-trash-alt"></i>
+</a>
+<br /> {{product.sku}}
+<br /> {{product.name}}
+<br /> {{product.price}}
+<br />
+<app-product-department [product]="product"></app-product-department>
