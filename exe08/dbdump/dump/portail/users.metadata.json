@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_","ns":"portail.users"},{"v":2,"unique":true,"key":{"email":1},"name":"email_1","ns":"portail.users","background":true}],"uuid":"313c6d4273254015bb02d08f8b6e4303"}
