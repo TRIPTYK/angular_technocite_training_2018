@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MovieService } from '../shared/movie.service';
 
 @Component({
   selector: 'app-menu',
@@ -6,7 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  constructor() {}
+  count: number;
+  constructor(public movieService: MovieService) {
+    this.count = 0;
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCountFromServer();
+  }
+  getCountFromServer() {
+    this.movieService
+      .getMoviesCount()
+      .then(result => (this.count = result as number));
+  }
 }

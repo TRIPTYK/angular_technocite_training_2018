@@ -8,4 +8,7 @@ export class MovieService {
   getAll() {
     return this.http.get(BASE_URL).toPromise();
   }
+  getMoviesCount() {
+    return this.http.get(`${BASE_URL}/count`).toPromise();
+  }
 }
