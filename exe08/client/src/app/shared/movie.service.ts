@@ -11,4 +11,7 @@ export class MovieService {
   getMoviesCount() {
     return this.http.get(`${BASE_URL}/count`).toPromise();
   }
+  getMovieById(id: number) {
+    return this.http.get(`${BASE_URL}/${id}`).toPromise();
+  }
 }
