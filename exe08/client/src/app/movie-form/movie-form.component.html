@@ -4,10 +4,13 @@
       <div class="input-field col s6">
         <input id="title" type="text" class="validate" [formControl]="movieForm.controls['title']">
         <label for="title">Movie Title</label>
+        <span class='error' *ngIf="movieForm.controls['title'].touched && !movieForm.controls['title'].valid">The title must exist</span>
+
       </div>
       <div class="input-field col s6">
         <input id="id" type="tel" class="validate" [formControl]="movieForm.controls['id']">
         <label for="id">Movie Id</label>
+        <span class='error' *ngIf="movieForm.controls['title'].touched && !movieForm.controls['id'].valid">The id must exist</span>
       </div>
     </div>
     <div class="row">

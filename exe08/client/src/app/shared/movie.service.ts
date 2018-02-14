@@ -22,6 +22,7 @@ export class MovieService {
         headers: HEADER
       })
       .toPromise()
-      .then(r => this.router.navigate(['/home']));
+      .then(r => this.router.navigate(['/home']))
+      .catch(err => console.log(err.message));
   }
 }
