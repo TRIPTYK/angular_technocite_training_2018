@@ -8,6 +8,7 @@
     <p>{{movie.overview}}</p>
   </div>
   <div class="card-action">
-    <a href="#">details</a>
+    <a [routerLink]="['/movie',movie.id]">link to Details</a>
+
   </div>
 </div>

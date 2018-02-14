@@ -20,18 +20,20 @@ export class MoviesListComponent implements OnInit {
   }
   generateVisualMovies() {
     let tmpArray = [];
+    let count = 4;
     this.movies.map((element, i) => {
-      if (i % 4 === 0) {
-        if (tmpArray.length > 0) {
-          this.visualMovies.push(tmpArray);
-        }
+      if (count === 0) {
+        this.visualMovies.push(tmpArray);
         tmpArray = [];
+        count = 3;
         tmpArray.push(element);
       } else {
         tmpArray.push(element);
-        if (i === this.movies.length - 1) {
-          this.visualMovies.push(tmpArray);
-        }
+        count--;
+      }
+      if (i === this.movies.length - 1) {
+        console.log('ok');
+        this.visualMovies.push(tmpArray);
       }
     });
   }
