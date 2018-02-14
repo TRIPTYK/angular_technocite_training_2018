@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MovieService } from '../shared/movie.service';
 import { Movie } from '../shared/models/movie.model';
+import { ActivatedRouteSnapshot, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-movies-list',
@@ -10,18 +10,13 @@ import { Movie } from '../shared/models/movie.model';
 export class MoviesListComponent implements OnInit {
   movies: Movie[];
   visualMovies: any;
-  constructor(public movieService: MovieService) {
+  constructor(private route: ActivatedRoute) {
     this.movies = [];
     this.visualMovies = [];
   }
   ngOnInit() {
-    this.getMovies();
-  }
-  getMovies() {
-    this.movieService.getAll().then(result => {
-      (result as Movie[]).map(movie => this.movies.push(movie as Movie));
-      this.generateVisualMovies();
-    });
+    this.movies = this.route.snapshot.data['movies'];
+    this.generateVisualMovies();
   }
   generateVisualMovies() {
     let tmpArray = [];

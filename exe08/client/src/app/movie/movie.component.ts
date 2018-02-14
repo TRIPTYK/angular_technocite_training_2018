@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Movie } from '../shared/models/movie.model';
 import { Resolve, ActivatedRoute } from '@angular/router';
-import { MovieService } from '../shared/movie.service';
 
 @Component({
   selector: 'app-movie',
@@ -10,24 +9,16 @@ import { MovieService } from '../shared/movie.service';
 })
 export class MovieComponent implements OnInit {
   id: number;
+  unique: Boolean;
   @Input() movie: Movie;
-  constructor(
-    private route: ActivatedRoute,
-    private movieService: MovieService
-  ) {
-    route.params.subscribe(params => {
-      this.id = params['id'];
-    });
-    if (!this.movie && this.id) {
-      console.error('no movie defined');
-      // this.getMovieFromService(this.id);
-    }
+  constructor(private route: ActivatedRoute) {
+    this.unique = false;
   }
 
-  ngOnInit() {}
-  getMovieFromService(id) {
-    this.movieService.getMovieById(id).then(movies => {
-      this.movie = movies[0] as Movie;
-    });
+  ngOnInit() {
+    if (!this.movie) {
+      this.unique = true;
+      this.movie = this.route.snapshot.data['movie'];
+    }
   }
 }

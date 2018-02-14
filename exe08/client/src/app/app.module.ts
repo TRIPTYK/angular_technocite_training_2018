@@ -8,11 +8,25 @@ import { MenuComponent } from './menu/menu.component';
 import { MoviesListComponent } from './movies-list/movies-list.component';
 import { MovieService } from './shared/movie.service';
 import { MovieComponent } from './movie/movie.component';
+import { MovieResolver } from './shared/resolvers/movie.resolver';
+import { MoviesResolver } from './shared/resolvers/movies.resolvers';
 
 const routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: MoviesListComponent },
-  { path: 'movie/:id', component: MovieComponent }
+  {
+    path: 'home',
+    component: MoviesListComponent,
+    resolve: {
+      movies: MoviesResolver
+    }
+  },
+  {
+    path: 'movie/:id',
+    component: MovieComponent,
+    resolve: {
+      movie: MovieResolver
+    }
+  }
 ];
 @NgModule({
   declarations: [
@@ -22,7 +36,7 @@ const routes = [
     MovieComponent
   ],
   imports: [BrowserModule, HttpClientModule, RouterModule.forRoot(routes)],
-  providers: [MovieService],
+  providers: [MovieService, MoviesResolver, MovieResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
